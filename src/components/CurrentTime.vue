@@ -46,7 +46,7 @@ function getWeek() {
 
 function cal() {
   clearTimeout(timer);
-  currentTime.value = dayjs().format("hh:mm:ss");
+  currentTime.value = dayjs().format("HH:mm:ss");
   currentDay.value = dayjs().format("MM/DD");
   week.value = `周${getWeek()}`;
   timer = setTimeout(() => {

@@ -1,4 +1,6 @@
 <script setup>
+import CurrentTime from "./components/CurrentTime.vue";
+
 const navigates = [
   {
     groupName: "",
@@ -70,6 +72,7 @@ const navigates = [
 <template>
   <div class="bg"></div>
   <div class="homepage">
+    <current-time />
     <div class="navigate" v-for="na in navigates" :key="na.groupName">
       <div class="group-name" v-if="na.groupName">{{ na.groupName }}</div>
       <div class="urls">
@@ -124,9 +127,9 @@ const navigates = [
 
 .group-name {
   font-weight: 700;
-  background: linear-gradient(to right, #5cd2ef, #5d80fd);
   font-size: 20px;
   position: relative;
+  background: linear-gradient(to right, #5cd2ef, #5d80fd);
   -webkit-background-clip: text;
   color: transparent;
 }

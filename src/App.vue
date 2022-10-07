@@ -2,7 +2,7 @@
 import CurrentTime from "./components/CurrentTime.vue";
 import { request } from "./utils/request";
 import { reactive, ref } from "vue";
-import { Plus } from "@element-plus/icons-vue";
+import { Plus, Location } from "@element-plus/icons-vue";
 import NewsList from "./components/NewsList.vue";
 
 const navigates = ref([]);
@@ -67,6 +67,9 @@ function submitNewNavigate() {
 
 <template>
   <div class="weather" v-if="weather.location">
+    <el-icon>
+      <Location />
+    </el-icon>
     {{ weather.location }}。 {{ weather.weather }}
   </div>
   <div class="bg" :style="{ backgroundImage: `url(${bgImage})` }"></div>

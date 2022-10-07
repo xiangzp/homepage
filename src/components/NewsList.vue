@@ -39,6 +39,30 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
   box-sizing: border-box;
   overflow: hidden;
 
+  /* 滚动条整体 */
+  &::-webkit-scrollbar {
+    height: 20px;
+    width: 4px;
+  }
+  /* 两个滚动条交接处 -- x轴和y轴 */
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  /* 滚动条滑块 */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #535353;
+  }
+
+  /* 滚动条轨道 */
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: #000;
+  }
+
   &:hover {
     overflow: auto;
   }
@@ -55,6 +79,7 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
     &:hover {
       a {
         color: #fff;
+        text-decoration: underline;
       }
     }
   }

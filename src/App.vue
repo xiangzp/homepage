@@ -137,8 +137,7 @@ function submitNewNavigate() {
   right: 0;
   background-color: rgba(5, 9, 17, 0.99);
   background-size: cover;
-  filter: brightness(30%) blur(1px);
-  transform: scale(1.01);
+  filter: brightness(30%);
   z-index: -1;
 }
 

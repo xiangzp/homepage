@@ -3,72 +3,14 @@ import CurrentTime from "./components/CurrentTime.vue";
 import { request } from "./utils/request";
 import { ref } from "vue";
 
-const navigates = [
-  {
-    groupName: "",
-    urls: [
-      {
-        icon: new URL("./assets/logo/v2ex@2x.png", import.meta.url).href,
-        path: "https://www.v2ex.com/",
-        name: "V2EX",
-      },
-      {
-        icon: new URL("./assets/logo/zhihu.png", import.meta.url).href,
-        path: "https://www.zhihu.com/",
-        name: "知乎",
-      },
-      {
-        icon: new URL("./assets/logo/twitter-6.svg", import.meta.url).href,
-        path: "https://www.twitter.com/",
-        name: "Twitter",
-      },
-      {
-        icon: new URL("./assets/logo/iconfont.svg", import.meta.url).href,
-        path: "https://www.iconfont.cn/",
-        name: "iconfont",
-      },
-      {
-        icon: new URL("./assets/logo/bilibili-logo-blue.png", import.meta.url)
-          .href,
-        path: "https://www.bilibili.com/",
-        name: "Bilibili",
-      },
-      {
-        icon: new URL("./assets/logo/juejin.png", import.meta.url).href,
-        path: "https://juejin.cn/",
-        name: "掘金",
-      },
-      {
-        icon: new URL("./assets/logo/baidufanyi.png", import.meta.url).href,
-        path: "https://fanyi.baidu.com/",
-        name: "百度翻译",
-      },
-      {
-        icon: new URL("./assets/logo/github.png", import.meta.url).href,
-        path: "https://github.com/",
-        name: "GitHub",
-      },
-      {
-        icon: new URL("./assets/logo/gitee.svg", import.meta.url).href,
-        path: "https://gitee.com/",
-        name: "Gitee",
-      },
-      {
-        icon: new URL("./assets/logo/weixindushu.png", import.meta.url).href,
-        path: "https://weread.qq.com/",
-        name: "微信读书",
-      },
-      {
-        icon: new URL(
-          "./assets/logo/weixingongzhongpingtai.svg",
-          import.meta.url
-        ).href,
-        path: "https://mp.weixin.qq.com/",
-        name: "微信公众平台",
-      },
-    ],
-  },
-];
+const navigates = ref([]);
+request.get("https://78bnit.lafyun.com:443/get-navigates").then((res) => {
+  try {
+    navigates.value = res.data;
+  } catch (e) {
+    navigates.value = [];
+  }
+});
 
 let bgImage = ref();
 request.get("https://78bnit.lafyun.com:443/get-bing-image").then((res) => {
@@ -78,16 +20,36 @@ request.get("https://78bnit.lafyun.com:443/get-bing-image").then((res) => {
     bgImage.value = "";
   }
 });
+
+const weather = ref({});
+request.get("https://78bnit.lafyun.com:443/get-weather").then((res) => {
+  try {
+    const todayWeather = res.data.data[0];
+    weather.value = {
+      location: res.data.city,
+      weather: `${todayWeather.wea}，当前${todayWeather.tem}°C`,
+    };
+  } catch (e) {
+    weather.value = {};
+  }
+});
 </script>
 
 <template>
+  <div class="weather" v-if="weather.location">
+    {{ weather.location }}。 {{ weather.weather }}
+  </div>
   <div class="bg" :style="{ backgroundImage: `url(${bgImage})` }"></div>
   <div class="homepage">
     <current-time />
-    <div class="navigate" v-for="na in navigates" :key="na.groupName">
-      <div class="group-name" v-if="na.groupName">{{ na.groupName }}</div>
+    <div class="navigate">
       <div class="urls">
-        <a class="url" v-for="url in na.urls" :key="url.path" :href="url.path">
+        <a
+          class="url"
+          v-for="url in navigates"
+          :key="url.path"
+          :href="url.path"
+        >
           <div class="icon">
             <img :src="url.icon" />
           </div>
@@ -170,5 +132,13 @@ request.get("https://78bnit.lafyun.com:443/get-bing-image").then((res) => {
 
 .url:hover {
   transform: scale(1.1);
+}
+
+.weather {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  color: #e8e8e8;
+  font-size: 12px;
 }
 </style>

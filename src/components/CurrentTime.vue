@@ -2,7 +2,8 @@
   <div class="current-time">
     <div class="time">{{ currentTime }}</div>
     <div class="day">
-      {{ currentDay }}<span style="margin-left: 10px">{{ week }}</span>
+      {{ currentDay }}
+      <span style="margin-left: 10px">{{ week }} </span>
     </div>
   </div>
 </template>
@@ -69,6 +70,7 @@ onUnmounted(() => {
 
 .time {
   font-size: 50px;
+  font-weight: 700;
   letter-spacing: 8px;
   background: linear-gradient(to right, rgba(99, 225, 255, 0.96), #6b8bff);
   -webkit-background-clip: text;

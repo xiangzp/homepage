@@ -23,15 +23,9 @@ import { Link } from "@element-plus/icons-vue";
 
 const news = ref();
 
-request
-  .get("https://78bnit.lafyun.com:443/get-news", {
-    params: {
-      type: "weibo",
-    },
-  })
-  .then((res) => {
-    news.value = res.data.data;
-  });
+request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
+  news.value = res.data.data;
+});
 </script>
 
 <style scoped lang="less">

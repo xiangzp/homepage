@@ -1,5 +1,7 @@
 <script setup>
 import CurrentTime from "./components/CurrentTime.vue";
+import { request } from "./utils/request";
+import { ref } from "vue";
 
 const navigates = [
   {
@@ -67,10 +69,19 @@ const navigates = [
     ],
   },
 ];
+
+let bgImage = ref();
+request.get("https://78bnit.lafyun.com:443/get-bing-image").then((res) => {
+  try {
+    bgImage.value = `https://cn.bing.com${res.data.images[0].url}`;
+  } catch (e) {
+    bgImage.value = "";
+  }
+});
 </script>
 
 <template>
-  <div class="bg"></div>
+  <div class="bg" :style="{ backgroundImage: `url(${bgImage})` }"></div>
   <div class="homepage">
     <current-time />
     <div class="navigate" v-for="na in navigates" :key="na.groupName">
@@ -96,6 +107,8 @@ const navigates = [
   right: 0;
   background-color: rgba(5, 9, 17, 0.99);
   background-size: cover;
+  filter: brightness(30%) blur(1px);
+  transform: scale(1.01);
   z-index: -1;
 }
 

@@ -167,8 +167,8 @@ function submitNewNavigate() {
   transition: transform 0.3s;
 
   .icon {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 6px;
     background: #fff;
     display: flex;

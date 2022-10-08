@@ -151,7 +151,7 @@ function submitNewNavigate() {
   top: 100px;
   left: 20px;
   bottom: 20px;
-  right: 380px;
+  right: 420px;
 }
 
 .navigate + .navigate {
@@ -228,6 +228,6 @@ function submitNewNavigate() {
   right: 20px;
   top: 20px;
   bottom: 20px;
-  width: 350px;
+  width: 420px;
 }
 </style>

@@ -30,12 +30,12 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
 
 <style scoped lang="less">
 .card {
-  background: rgba(#000, 0.8);
-  border-radius: 12px;
+  background: #fff;
+  border-radius: 16px;
   padding: 24px;
   box-shadow: 0 0 10px rgba(#000, 0.2);
   height: 100%;
-  color: #fff;
+  color: #000;
   box-sizing: border-box;
   overflow: hidden;
 
@@ -71,21 +71,22 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
     font-size: 14px;
     transition: all 0.3s;
     a {
-      color: #aaa;
+      color: #333;
       text-decoration: none;
       font-size: 16px;
-      transition: color 0.3s;
+      line-height: 1.6;
     }
     &:hover {
       a {
-        color: #fff;
+        color: #5496f3;
         text-decoration: underline;
+        font-weight: 600;
       }
     }
   }
 
   .link + .link {
-    margin-top: 8px;
+    margin-top: 12px;
   }
 }
 </style>

@@ -6,13 +6,16 @@ import { Plus, Location } from "@element-plus/icons-vue";
 import NewsList from "./components/NewsList.vue";
 
 const navigates = ref([]);
-request.get("https://78bnit.lafyun.com:443/get-navigates").then((res) => {
-  try {
-    navigates.value = res.data;
-  } catch (e) {
-    navigates.value = [];
-  }
-});
+function getNavigates() {
+  request.get("https://78bnit.lafyun.com:443/get-navigates").then((res) => {
+    try {
+      navigates.value = res.data;
+    } catch (e) {
+      navigates.value = [];
+    }
+  });
+}
+getNavigates();
 
 let bgImage = ref();
 request.get("https://78bnit.lafyun.com:443/get-bing-image").then((res) => {
@@ -56,10 +59,12 @@ function addNewNavigate() {
 function submitNewNavigate() {
   formRef.value.validate((valid) => {
     if (valid) {
-      request.post(
-        "https://78bnit.lafyun.com:443/add-navigate",
-        formModal.value
-      );
+      request
+        .post("https://78bnit.lafyun.com:443/add-navigate", formModal.value)
+        .then(() => {
+          dialogVisible.value = false;
+          getNavigates();
+        });
     }
   });
 }

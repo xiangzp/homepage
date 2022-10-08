@@ -142,7 +142,7 @@ function submitNewNavigate() {
   right: 0;
   background-color: rgba(5, 9, 17, 0.99);
   background-size: cover;
-  filter: brightness(30%);
+  filter: brightness(60%);
   z-index: -1;
 }
 

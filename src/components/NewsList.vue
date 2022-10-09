@@ -94,7 +94,7 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
   }
 
   .link + .link {
-    margin-top: 12px;
+    margin-top: 18px;
   }
 }
 </style>

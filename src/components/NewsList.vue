@@ -30,26 +30,30 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
 
 <style scoped lang="less">
 .card {
-  background: #fff;
+  background: #111;
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 0 10px rgba(#000, 0.2);
   height: 100%;
-  color: #000;
+  color: #fff;
   box-sizing: border-box;
   overflow: hidden;
 
   /* 滚动条整体 */
+
   &::-webkit-scrollbar {
     height: 20px;
     width: 4px;
   }
+
   /* 两个滚动条交接处 -- x轴和y轴 */
+
   &::-webkit-scrollbar-corner {
     background-color: transparent;
   }
 
   /* 滚动条滑块 */
+
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
@@ -57,6 +61,7 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
   }
 
   /* 滚动条轨道 */
+
   &::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -70,17 +75,18 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
   .link {
     font-size: 14px;
     transition: all 0.3s;
+
     a {
-      color: #333;
+      color: #bbb;
       text-decoration: none;
       font-size: 16px;
       line-height: 1.6;
     }
+
     &:hover {
       a {
-        color: #5496f3;
+        color: #fff;
         text-decoration: underline;
-        font-weight: 600;
       }
     }
   }

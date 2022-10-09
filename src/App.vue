@@ -6,6 +6,7 @@ import { Plus, Location } from "@element-plus/icons-vue";
 import NewsList from "./components/NewsList.vue";
 
 const navigates = ref([]);
+
 function getNavigates() {
   request.get("https://78bnit.lafyun.com:443/get-navigates").then((res) => {
     try {
@@ -15,14 +16,23 @@ function getNavigates() {
     }
   });
 }
+
 getNavigates();
 
-let bgImage = ref();
+const bgImage = ref();
+const bgImageDesc = ref({});
 request.get("https://78bnit.lafyun.com:443/get-bing-image").then((res) => {
   try {
-    bgImage.value = `https://cn.bing.com${res.data.images[0].url}`;
+    const imageInfo = res.data.images[0];
+    bgImage.value = `https://cn.bing.com${imageInfo.url}`;
+    bgImageDesc.value = {
+      title: imageInfo.title,
+      url: `https://cn.bing.com${imageInfo.quiz}`,
+      copyright: imageInfo.copyright,
+    };
   } catch (e) {
     bgImage.value = "";
+    bgImageDesc.value = {};
   }
 });
 
@@ -78,6 +88,10 @@ function submitNewNavigate() {
     {{ weather.location }}。 {{ weather.weather }}
   </div>
   <div class="bg" :style="{ backgroundImage: `url(${bgImage})` }"></div>
+  <div class="bg-desc" v-if="bgImageDesc.url">
+    <a :href="bgImageDesc.url">{{ bgImageDesc.title }}</a>
+    <div>{{ bgImageDesc.copyright }}</div>
+  </div>
   <div class="homepage">
     <current-time />
     <div class="navigate">
@@ -229,5 +243,29 @@ function submitNewNavigate() {
   top: 20px;
   bottom: 20px;
   width: 420px;
+}
+
+.bg-desc {
+  position: fixed;
+  left: 20px;
+  bottom: 10px;
+  z-index: 1;
+
+  a {
+    color: #aaa;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+
+    &:hover {
+      color: #eee;
+    }
+  }
+
+  div {
+    color: #777;
+    font-size: 10px;
+    margin-top: 4px;
+  }
 }
 </style>

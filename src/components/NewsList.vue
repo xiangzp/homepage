@@ -69,12 +69,14 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
   }
 
   &:hover {
-    overflow: auto;
+    overflow-y: auto;
   }
 
   .link {
     font-size: 14px;
     transition: all 0.3s;
+    width: 372px;
+    box-sizing: border-box;
 
     a {
       color: #bbb;

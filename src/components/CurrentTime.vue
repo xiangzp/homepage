@@ -64,21 +64,19 @@ onUnmounted(() => {
 
 <style scoped>
 .current-time {
-  padding: 20px 0;
-  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  color: #333;
 }
 
 .time {
   font-size: 50px;
   font-weight: 700;
   letter-spacing: 8px;
-  background: linear-gradient(to right, rgba(99, 225, 255, 0.96), #6b8bff);
-  -webkit-background-clip: text;
-  color: transparent;
 }
 
 .day {
-  color: #a5a5a5;
   margin-left: 20px;
+  margin-bottom: 10px;
 }
 </style>

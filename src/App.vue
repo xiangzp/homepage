@@ -4,6 +4,7 @@ import { request } from "./utils/request";
 import { reactive, ref } from "vue";
 import { Plus, Location } from "@element-plus/icons-vue";
 import NewsList from "./components/NewsList.vue";
+import JuejinList from "./components/JuejinList.vue";
 
 const navigates = ref([]);
 
@@ -81,42 +82,53 @@ function submitNewNavigate() {
 </script>
 
 <template>
-  <div class="weather" v-if="weather.location">
-    <el-icon>
-      <Location />
-    </el-icon>
-    {{ weather.location }}。 {{ weather.weather }}
-  </div>
-  <div class="bg" :style="{ backgroundImage: `url(${bgImage})` }"></div>
-  <div class="bg-desc" v-if="bgImageDesc.url">
-    <a :href="bgImageDesc.url">{{ bgImageDesc.title }}</a>
-    <div>{{ bgImageDesc.copyright }}</div>
-  </div>
   <div class="homepage">
-    <current-time />
-    <div class="navigate">
-      <div class="urls">
-        <a
-          class="url"
-          v-for="url in navigates"
-          :key="url.path"
-          :href="url.path"
-        >
-          <div class="icon">
-            <img :src="url.icon" />
-          </div>
-          <p>{{ url.name }}</p>
-        </a>
-        <a class="url" @click="addNewNavigate">
-          <div class="icon add-plus">
-            <el-icon :size="24">
-              <Plus />
-            </el-icon>
-          </div>
-        </a>
+    <div class="left-box">
+      <div class="card">
+        <div class="weather" v-if="weather.location">
+          <el-icon>
+            <Location />
+          </el-icon>
+          {{ weather.location }}。 {{ weather.weather }}
+        </div>
+        <current-time />
+      </div>
+
+      <div class="bing-image">
+        <div class="bg" :style="{ backgroundImage: `url(${bgImage})` }"></div>
+        <div class="bg-desc" v-if="bgImageDesc.url">
+          <a :href="bgImageDesc.url">{{ bgImageDesc.title }}</a>
+          <div>{{ bgImageDesc.copyright }}</div>
+        </div>
+      </div>
+
+      <div class="navigate">
+        <div class="urls">
+          <a
+            class="url"
+            v-for="url in navigates"
+            :key="url.path"
+            :href="url.path"
+          >
+            <div class="icon">
+              <img :src="url.icon" />
+            </div>
+            <p>{{ url.name }}</p>
+          </a>
+          <a class="url" @click="addNewNavigate">
+            <div class="icon add-plus">
+              <el-icon :size="24">
+                <Plus />
+              </el-icon>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
-    <news-list class="new-list" />
+    <div class="right-box">
+      <news-list style="flex: 5" class="new-list" />
+      <juejin-list style="flex: 4" />
+    </div>
   </div>
   <el-dialog v-model="dialogVisible" width="500px" title="添加导航网址">
     <el-form
@@ -148,27 +160,67 @@ function submitNewNavigate() {
 </template>
 
 <style scoped lang="less">
-.bg {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(5, 9, 17, 0.99);
-  background-size: cover;
-  filter: brightness(60%);
-  z-index: -1;
+.bing-image {
+  position: relative;
+  padding: 20px 12px;
+  height: 100px;
+  border-radius: 0 50px 50px 0;
+  overflow: hidden;
+
+  .bg {
+    filter: brightness(80%);
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+  .bg-desc {
+    position: absolute;
+    bottom: 20px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+
+      &:hover {
+        color: #eee;
+      }
+    }
+
+    div {
+      color: #fff;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+  }
+}
+
+.card {
+  padding: 12px 20px;
 }
 
 .homepage {
-  position: fixed;
-  top: 100px;
-  left: 20px;
-  bottom: 20px;
-  right: 420px;
+  display: flex;
 }
 
-.navigate + .navigate {
+.left-box {
+  flex: 0 0 600px;
+}
+
+.right-box {
+  width: 100%;
+  display: flex;
+  margin-left: 20px;
+}
+
+.navigate {
   margin-top: 20px;
 }
 
@@ -178,8 +230,10 @@ function submitNewNavigate() {
 }
 
 .url {
-  padding: 20px 30px;
-  color: #e8e8e8;
+  box-sizing: border-box;
+  flex: 0 0 25%;
+  padding: 12px;
+  color: #333;
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -196,6 +250,7 @@ function submitNewNavigate() {
     align-items: center;
     overflow: hidden;
     justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .add-plus {
@@ -230,42 +285,9 @@ function submitNewNavigate() {
 }
 
 .weather {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  color: #e8e8e8;
+  color: #555;
   font-size: 12px;
-}
-
-.new-list {
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  bottom: 20px;
-  width: 420px;
-}
-
-.bg-desc {
-  position: fixed;
-  left: 20px;
-  bottom: 10px;
-  z-index: 1;
-
-  a {
-    color: #aaa;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-
-    &:hover {
-      color: #eee;
-    }
-  }
-
-  div {
-    color: #777;
-    font-size: 10px;
-    margin-top: 4px;
-  }
+  display: flex;
+  align-items: center;
 }
 </style>

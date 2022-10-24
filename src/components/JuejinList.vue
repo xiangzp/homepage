@@ -4,14 +4,8 @@
       <template v-if="news">
         <div style="font-size: 22px; margin-bottom: 20px">{{ news.name }}</div>
         <div v-for="(link, index) in news.list" :key="link.title" class="link">
-          <a target="_blank" :href="`https://www.baidu.com/s?wd=${link.link}`">
-            <div>{{ index + 1 }}、{{ link.title }}</div>
-            <div
-              v-if="link.picture_url && link.picture_url !== 'null'"
-              class="preview_image"
-            >
-              <img :src="link.picture_url" alt="img" />
-            </div>
+          <a target="_blank" :href="link.link">
+            <div>{{ index + 1 }}、{{ link.name }}</div>
           </a>
         </div>
       </template>
@@ -25,7 +19,7 @@ import { request } from "../utils/request";
 
 const news = ref();
 
-request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
+request.get("https://78bnit.lafyun.com:443/get-juejin-list").then((res) => {
   news.value = res.data.data;
 });
 </script>
@@ -53,7 +47,7 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
       justify-content: space-between;
 
       .preview_image {
-        flex: 0 0 50px;
+        flex: 0 0 60px;
         min-width: 0;
         margin-left: 12px;
 

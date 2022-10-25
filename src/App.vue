@@ -168,7 +168,6 @@ function submitNewNavigate() {
   overflow: hidden;
 
   .bg {
-    filter: brightness(80%);
     background-size: cover;
     background-position: center center;
     position: absolute;
@@ -177,11 +176,22 @@ function submitNewNavigate() {
     left: 0;
     right: 0;
     z-index: -1;
+    transition: all 0.3s;
+  }
+
+  &:hover {
+    .bg {
+      transform: scale(1.15);
+    }
   }
 
   .bg-desc {
     position: absolute;
-    bottom: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 0 10px 10px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1));
 
     a {
       color: #fff;
@@ -231,7 +241,7 @@ function submitNewNavigate() {
 
 .url {
   box-sizing: border-box;
-  flex: 0 0 25%;
+  flex: 0 0 20%;
   padding: 12px;
   color: #333;
   text-decoration: none;

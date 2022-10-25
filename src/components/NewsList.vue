@@ -53,12 +53,20 @@ request.get("https://78bnit.lafyun.com:443/get-news").then((res) => {
       justify-content: space-between;
 
       .preview_image {
-        flex: 0 0 50px;
+        flex: 0 0 70px;
         min-width: 0;
         margin-left: 12px;
+        height: 40px;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         img {
           width: 100%;
+          object-fit: cover;
+          height: 100%;
         }
       }
     }

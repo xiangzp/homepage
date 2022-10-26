@@ -163,7 +163,7 @@ function submitNewNavigate() {
 .bing-image {
   position: relative;
   padding: 20px 12px;
-  height: 100px;
+  height: 120px;
   border-radius: 0 50px 50px 0;
   overflow: hidden;
 
@@ -190,8 +190,8 @@ function submitNewNavigate() {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 0 10px 10px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1));
+    padding: 10px 0 10px 10px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
 
     a {
       color: #fff;

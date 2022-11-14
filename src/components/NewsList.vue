@@ -4,7 +4,10 @@
       <template v-if="news">
         <div style="font-size: 22px; margin-bottom: 20px">{{ news.name }}</div>
         <div v-for="(link, index) in news.list" :key="link.title" class="link">
-          <a target="_blank" :href="`https://www.baidu.com/s?wd=${link.link}`">
+          <a
+            target="_blank"
+            :href="`https://www.zhihu.com/search?type=content&q=${link.link}`"
+          >
             <div>{{ index + 1 }}、{{ link.title }}</div>
             <div
               v-if="link.picture_url && link.picture_url !== 'null'"

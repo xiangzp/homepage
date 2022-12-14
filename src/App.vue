@@ -221,11 +221,11 @@ function submitNewNavigate() {
 }
 
 .left-box {
-  flex: 0 0 600px;
+  flex: 0 0 35%;
 }
 
 .right-box {
-  width: 100%;
+  flex: 1;
   display: flex;
   margin-left: 20px;
 }

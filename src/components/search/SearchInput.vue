@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full border-[#dfe1e5] border-[1px] h-[50px] rounded-full px-[48px] relative"
+    class="w-full border-[#dfe1e5] border-[1px] h-full rounded-full px-[40px] relative"
     :class="inputActivited && 'shadow-md'"
   >
     <div class="absolute left-0 top-0 bottom-0 flex items-center pl-[10px]">
@@ -13,6 +13,9 @@
       @focus="inputActivited = true"
       @blur="inputActivited = false"
     />
+    <div class="absolute right-0 top-0 bottom-0 flex items-center pr-[4px] w-[28px]">
+      <img src="@/assets/google.svg" alt="" class="block" />
+    </div>
   </div>
 </template>
 

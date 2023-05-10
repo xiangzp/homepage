@@ -1,9 +1,16 @@
 <script lang="ts" setup>
-import SearchInput from '@/components/search/SearchInput.vue'
+import NavigateList from '@/components/navigates/NavigateList.vue'
+import ZhiHuHots from '@/components/news/ZhiHuHots.vue'
+import KNews from '@/components/news/36KNews.vue'
 </script>
 
 <template>
-  <div class="py-[16px] flex justify-center items-center">
-    <SearchInput />
+  <div>
+    <NavigateList />
+
+    <div class="flex mt-[8px]">
+      <ZhiHuHots class="flex-1" />
+      <KNews class="flex-1 ml-[24px]" />
+    </div>
   </div>
 </template>
